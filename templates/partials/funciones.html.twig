@@ -1,0 +1,17 @@
+    <h4>Esto está metido con INCLUDE</h4>
+ 
+ <h5>Sacar el numero minimo de un array - min</h5>
+    {{ min([9,11,4,124,6,4,8]) }}
+
+    <h5>Random</h5>
+    {{ random(animales) }}
+
+    <h5>Sacar el elemento con mayor valor de un array - max</h5>
+      {{ max([9,11,4,124,6,4,8]) }}
+
+    <h5>Range</h5>
+    {% for i in range(0,100,5) %} {# del 0 al 100, y saltando de 5 en 5 #}
+    {{i}} | 
+    {% endfor %}
+
+    <br>Color del parámetro pasado: {{ color }}

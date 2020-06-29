@@ -1,0 +1,118 @@
+{% extends 'layouts/master.html.twig' %}
+{% block metadescription %}Aprendiendo el framework más demandado de PHP: Symfony{% endblock %}
+{% block keywords %}Aprendiendo,PHP,Symfony{% endblock %}
+{% block titulo %}Sección Animales{% endblock %}
+
+{% block header %}
+    {{ parent() }}
+<h1 style="text-align:center">Bienvenido a la sección de animales</h1>  
+{% endblock %}
+
+{% block contenido %}
+<hr>
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .nombre { color: purple; font-weight:bold; }
+    .numero { color: #3c39ca; font-weight:bold; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello ANIMALES! ✅</h1>
+
+    Title = {{ title }}
+
+    <br>
+
+    Se ha escapado el animal <span class="nombre">{{ nombre }}</span> con el número <span clasS="numero">{{ numero }}</span> del ZOO.
+    <hr>
+
+    {# Crear variables en Twig - vistas #}
+    {% set animalFurioso  = 'Ballena azul' %}
+
+    El animal furioso del día es: {{ animalFurioso }}
+    <hr>
+
+    {# arrays #}
+    <h3>Trabajando con arrays</h3>
+    <h4>dump<h4>
+    {{ dump(animales) }}
+     animales[2] >> {{ animales[2]}}
+
+    {# arrays asociativos #}
+     <h3>arrays asociativos</h3>
+     {{ dump(pajaros)}}
+     pajaros.origen >> {{ pajaros.origen}}<br>
+     <b>concatenar con ~</b> {{ pajaros.tipo ~ ' // ' ~ pajaros.origen }}
+
+     {# condicionales #}
+     <h3>if</h3>
+     {% if pajaros.tipo == 'paloma' %}
+        <b>&nbsp;&nbsp;&nbsp;Cuidado con la paloma</b>
+     {% else %}
+        <b>No hay palomas</b>
+     {% endif %}
+
+     <h3>for</h3>
+     &nbsp;&nbsp;&nbsp;Animales: 
+     {% if animales|length >= 1 %} {# si el array no está vacío, me haces el for #}
+        <ul>
+        {% for animal in animales %}
+            <li>{{ animal }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h3>Otro for</h3>
+    {% for i in 0..10 %} {# for($i = 0; $i <= 10; i++) #} 
+        {{i}} |
+    {% endfor %}
+    <br>    
+
+    {% for i in 0..animales|length %} {# for($i = 0; $i <= $animales.length; i++) #} 
+        {{i}} |
+    {% endfor %}
+    <br>
+    <h3>Evaluar con IF un string</h3>
+    {% if pajaros.categoria starts with 'g' %} {# comprobar que aves.categoria si empieza por una letra. #}
+        La categoria del pájaro empieza por 'g', categoria = {{ pajaros.categoria}}
+    {% elseif pajaros.categoria starts with 'gav' %}
+     La categoria del pájaro empieza por la silaba 'gav', categoria = {{ pajaros.categoria}}
+    {% elseif pajaros.categoria ends with 'mon' %}
+     La categoria del pájaro acaba en 'mon', categoria = {{ pajaros.categoria}}
+    {% else %}
+        La categoria del pájaro NO empieza por 'g', <br>
+        tampoco por la sílaba 'gav', <br>
+        tampoco acaba en 'mon', <br>
+         categoria = {{ pajaros.categoria}}
+    {% endif %}
+
+    <hr>
+    {# funciones predefinidas #}
+    <h3 style="color:#880000">Funciones predefinidas</h3>
+
+    {# includes #}
+    {{ include('partials/funciones.html.twig', {'color':'rojo fuego'}) }}
+
+    <h3 style="color:#01056f">Filtros</h3>
+    {% set email = '   email@email.com   ' %}
+    {{ animales|length }}
+    <h5>trim / upper / lower >> dump(email|trim|upper)</h5>    
+    {{ dump(email) }}
+    {{ dump(email|trim|upper|lower) }} {# para limpiar los espacios #} {# para mayusculas#}
+   
+   <h3>Crear filtros en twig</h3>
+   <h4 style="color:green">&nbsp;&nbsp;&nbsp;Extensiones personalizadas</h4>
+   <code>php bin/console make:twig-extension MiFiltro</code><br><br>
+
+    <code>multiplicar(2)|raw</code> <b><em>Raw para que no lo imprima crudo</em></b>
+    {{ multiplicar(2)|raw }}
+    <br>
+    <code>12|multiplicar|raw</code>
+    {{ 12|multiplicar|raw }}
+    <br>
+    <h3>Listado de rutas</h3>
+    <code>php bin/console debug:router</code>
+</div>
+<hr>
+{% endblock %}

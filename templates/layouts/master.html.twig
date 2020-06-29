@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+          <meta name="description" content="{% block metadescription %} {% endblock %}">
+          <meta name="keywords" content="{% block keywords %} {% endblock %}">
+           
+        <title>{% block titulo %} Inicio {% endblock %} - Aprendiendo Symfony</title>
+         {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+        <div id="header">
+            {% block header %}                 
+                <h1 style="text-align:center;">Cabecera de la plantilla</h1>
+            {% endblock %}
+        </div>
+
+        <section id="content">
+        {% block contenido %}
+            <p>Aquí va el contenido principal del body.</p>
+        {% endblock %}
+        </section>
+
+        <footer id="footer">
+            aprendiendoSymfony.com
+        </footer>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

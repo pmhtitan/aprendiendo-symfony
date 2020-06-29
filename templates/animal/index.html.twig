@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AnimalController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+   <hr>
+    <h4>Bucle para mostrar todos los animales</h4>
+    <ul>
+        {% for animal in animales %}
+            <li>El animal es {{animal.tipo}}, su color {{animal.color}}, y su raza {{animal.raza}}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <h4>FindOneBy</h4>
+        {{dump(animal)}}
+
+    <h4>FindBy</h4>
+        {{dump(animalesFiltroRaza)}}
+
+    <h4>Query Builder <h5>color = marron</h5></h4>
+    {{dump(queryBuilder)}}
+
+    <h4>DQL<h5>color = Globox</h5></h4>    
+    {{dump(DQL)}}
+
+    <h4>SQL<h5>SELECT * FROM animales ORDER BY id DESC </h5></h4>    
+    {{dump(SQL)}}
+</div>
+{% endblock %}
